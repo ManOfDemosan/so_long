@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 18:43:35 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:50:02 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	object_check(t_check check)
 
 int	main(void)
 {
+	int status;
 	t_check	check;
 	check.width = 5;
 	check.hight = 0;
@@ -128,15 +129,15 @@ int	main(void)
 		NULL
 	};
 
-	first_check(arr[0], check);
-	printf("=======================\n");
-	mid_check(arr[1], check);
-	printf("=======================\n");
-	mid_check(arr[2], check);
-	printf("=======================\n");
-	mid_check(arr[3], check);
-	printf("=======================\n");
-	final_check(arr[4],check);
-	printf("=======================\n");
-	object_check(check);
+	// first_check(arr[0], check);
+	// printf("=======================\n");
+	// mid_check(arr[1], check);
+	// printf("=======================\n");
+	// mid_check(arr[2], check);
+	// printf("=======================\n");
+	// mid_check(arr[3], check);
+	// printf("=======================\n");
+	// final_check(arr[4],check);
+	// printf("=======================\n");
+	// object_check(check);
 }

@@ -15,4 +15,11 @@ typedef struct s_check{
 	int	num_e;
 }	t_check;
 
+int	print_error(char *str);
+int	first_check(char *line, t_check *check);
+int	mid_check(char *line, t_check *check);
+int	final_check(char *line, t_check *check);
+int	object_check(t_check *check);
+int	count_hight(char *file, t_check *check);
+int	check_them_all(char *file, t_check *check);
 #endif

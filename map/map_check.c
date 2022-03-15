@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 21:02:35 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 22:42:39 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	first_check(char *line, t_check *check)
 	while (line[i] != '\n' && line[i] != '\0')
 	{
 		if (line[i] != '1')
-			return (print_error("1 ERROR: Wrong map structure!"));
+			return (print_error("1 ERROR: Wrong map structure!\n"));
 		i++;
 	}
 	if (i == 0)
-		return (print_error("2 ERROR: Wrong map structure!"));
+		return (print_error("2 ERROR: Wrong map structure!\n"));
 	check->width = i;
 	return (SUCCESS);
 }
@@ -43,19 +43,19 @@ int	mid_check(char *line, t_check *check)
 	while (line[i] != '\n')
 	{
 		if (i == 0 && line[i] != '1')
-			return (print_error("3 ERROR: Wrong map structure!"));
+			return (print_error("3 ERROR: Wrong map structure!\n"));
 		if (line[i] == 'C')
 			check->num_c++;
 		else if (line[i] == 'P')
 			check->num_p++;
 		else if (line[i] == 'E')
 			check->num_e++;
-		else if (i != 0 && (line[i] == '0' || line[i] == '1'))
-			return (print_error("4 ERROR: Wrong map structure!"));
+		else if (i != 0 && !(line[i] == '0' || line[i] == '1'))
+			return (print_error("4 ERROR: Wrong map structure!\n"));
 		i++;
 	}
 	if (line [i - 1] != '1' || i != check->width)
-		return (print_error("5 ERROR: Wrong map structure!"));
+		return (print_error("5 ERROR: Wrong map structure!\n"));
 	return (SUCCESS);
 }
 
@@ -67,11 +67,11 @@ int	final_check(char *line, t_check *check)
 	while (line[i] != '\0')
 	{
 		if (line[i] != '1')
-			return (print_error("6 ERROR: Wrong map structure!"));
+			return (print_error("6 ERROR: Wrong map structure!\n"));
 		i++;
 	}
 	if (i != check->width)
-		return (print_error("7 ERROR: Wrong map structure!"));
+		return (print_error("7 ERROR: Wrong map structure!\n"));
 	return (SUCCESS);
 }
 

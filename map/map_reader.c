@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 21:01:08 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 22:37:03 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ int	count_hight(char *file, t_check *check)
 	int		fd;
 	char	c;
 
-
 	fd = open(file, O_RDONLY);
-	if (fd == NULL)
+	if (fd == 0)
 		return (-1);
 	height = 1;
-	while (height != NULL)
+	while (height != 0)
 	{
 		readcount = read(fd, &c, 1);
 		if (readcount == 0)
@@ -48,22 +47,41 @@ int	check_them_all(char *file, t_check *check)
 	int		flag;
 
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (FAILURE);
 	line = get_next_line(fd);
 	if (line == NULL)
-		return (NULL);
+		return (0);
 	flag = first_check(line, check);
 	while (line != NULL)
 	{
 		free(line);
-		line = NULL;
 		line = get_next_line(fd);
-		if (line[check->width] != '\0')
+		if (line == NULL)
+			break ;
+		if (line[check->width - 1] != '\0')
 			mid_check(line, check);
-		else if (line[check->width] == '\0')
+		else if (line[check->width - 1] == '\0')
 			final_check(line, check);
 	}
 	free(line);
-	line = NULL;
 	close(fd);
 	return (SUCCESS);
+}
+
+int	main(void)
+{
+	int status;
+	t_check	check;
+	check.width = 0;
+	check.height = 0;
+	check.num_p = 0;
+	check.num_c = 0;
+	check.num_e = 0;
+
+	status = check_them_all("mape.ber", &check);
+	if (status == SUCCESS)
+		printf("SUCCESS!\n");
+	if (status == FAILURE)
+		printf("FAILURE!\n");
 }
