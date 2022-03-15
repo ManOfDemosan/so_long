@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 17:55:13 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:18:44 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-#define SUCCESS 0
-#define FAILURE 1
-
-typedef struct s_check{
-	int	width;
-	int	hight;
-	int	num_c;
-	int	num_p;
-	int	num_e;
-}	t_check;
+#include "map.h"
 
 int	print_error(char *str)
 {
