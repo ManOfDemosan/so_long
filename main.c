@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 14:45:22 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:21:22 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,12 @@ int	mid_check(char *line, t_check *check)
 	}
 	if (line [i - 1] != '1' || i != check->width)
 		print_error("ERROR: Wrong map structure!");
+	return (SUCCESS);
+}
+
+int	object_check(t_check *check)
+{
+	if (check->num_c < 1 || check->num_p > 1 || check.num_e > 1)
+		print_error("6 ERROR: Object Is Not Valid!\n");
 	return (SUCCESS);
 }
