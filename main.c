@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 16:21:22 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 16:37:52 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	mid_check(char *line, t_check *check)
 	i = 0;
 	while (line[i] != '\n')
 	{
-		if (line[0] != '1')
+		if (i == 0 && line[i] != '1')
 			print_error("ERROR: Wrong map structure!");
 		if (line[i] == 'C')
 			check->num_c++;
@@ -73,7 +73,7 @@ int	mid_check(char *line, t_check *check)
 
 int	object_check(t_check *check)
 {
-	if (check->num_c < 1 || check->num_p > 1 || check.num_e > 1)
+	if (check->num_c < 1 || check->num_p > 1 || check->num_e > 1)
 		print_error("6 ERROR: Object Is Not Valid!\n");
 	return (SUCCESS);
 }
