@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 18:18:44 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:02:35 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,3 +85,47 @@ int	object_check(t_check *check)
 		return (print_error("10 ERROR: Exit Is Not Valid!\n"));
 	return (SUCCESS);
 }
+
+// int main(void)
+// {
+// 	char *line;
+// 	int	fd;
+// 	t_check	check;
+// 	int	status;
+// 	char **map;
+
+// 	fd = open("map.ber", O_RDONLY);
+// 	line = get_next_line(fd);
+// 	if (line == NULL)
+// 		exit(0);
+// 	status = first_check(line, &check);
+// 	if (status != SUCCESS)
+// 		return (0);
+// 	while (line != NULL)
+// 	{
+// 		free(line);
+// 		line = NULL;
+// 		line = get_next_line(fd);
+// 		if (line[check.width] != '\0')
+// 			mid_check(line, &check);
+// 		else if (line[check.width] == '\0')
+// 			final_check(line, &check);
+// 	}
+// 	free(line);
+// 	line = NULL;
+// 	close(fd);
+// 	map = malloc(sizeof(char *) * (check.height + 1));
+// 	int index = 0;
+// 	fd = open("map.ber", O_RDONLY);
+// 	while (index < check.height)
+// 	{
+// 		line = get_next_line(fd);
+// 		map[index] = line;
+// 		++index;
+// 		free(line);
+// 		line = NULL;
+// 	}
+
+
+
+// }
