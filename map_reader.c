@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 20:45:43 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:01:08 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	count_hight(char *file, t_check *check)
 	return (height);
 }
 
-char	check_them_all(char *file, t_check *check)
+int	check_them_all(char *file, t_check *check)
 {
 	int		fd;
 	char	*line;
@@ -52,12 +52,18 @@ char	check_them_all(char *file, t_check *check)
 	if (line == NULL)
 		return (NULL);
 	flag = first_check(line, check);
-	while (flag != FAILURE)
+	while (line != NULL)
 	{
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
-		if (line)
+		if (line[check->width] != '\0')
+			mid_check(line, check);
+		else if (line[check->width] == '\0')
+			final_check(line, check);
 	}
-
+	free(line);
+	line = NULL;
+	close(fd);
+	return (SUCCESS);
 }
