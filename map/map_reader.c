@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/15 22:37:03 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:56:09 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	check_them_all(char *file, t_check *check)
 {
 	int		fd;
 	char	*line;
-	int		flag;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -52,36 +51,65 @@ int	check_them_all(char *file, t_check *check)
 	line = get_next_line(fd);
 	if (line == NULL)
 		return (0);
-	flag = first_check(line, check);
+	first_check(line, check);
 	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line[check->width - 1] != '\0')
+		if (line[check->width] != '\0')
 			mid_check(line, check);
-		else if (line[check->width - 1] == '\0')
+		else if (line[check->width] == '\0')
 			final_check(line, check);
 	}
+	object_check(check);
 	free(line);
 	close(fd);
-	return (SUCCESS);
+	return (check->status);
+}
+
+char	**mapping(char *file, t_check *check)
+{
+	char	**map;
+	int		fd;
+	int		i;
+
+	map = malloc(sizeof(char *) * (check->height + 1));
+	map[check->height] = NULL;
+	fd = open(file, O_RDONLY);
+	i = 0;
+	while (i < check->height)
+	{
+		map[i] = get_next_line(fd);
+		i++;
+	}
+	return (map);
 }
 
 int	main(void)
 {
-	int status;
+	char	**map;
+	int		i = 0;
+
 	t_check	check;
+	check.status = 0;
 	check.width = 0;
 	check.height = 0;
 	check.num_p = 0;
 	check.num_c = 0;
 	check.num_e = 0;
 
-	status = check_them_all("mape.ber", &check);
-	if (status == SUCCESS)
-		printf("SUCCESS!\n");
-	if (status == FAILURE)
-		printf("FAILURE!\n");
+	count_hight("mape.ber", &check);
+	check_them_all("mape.ber", &check);
+	// if (check.status == SUCCESS)
+	// 	printf("SUCCESS!\n");
+	// if (check.status == FAILURE)
+	// 	printf("FAILURE!\n");
+	map = mapping("mape.ber", &check);
+	while (i < 5)
+	{
+		printf("%s", map[i]);
+		i++;
+	}
 }

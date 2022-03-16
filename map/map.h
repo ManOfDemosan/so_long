@@ -13,6 +13,7 @@ typedef struct s_check{
 	int	num_c;
 	int	num_p;
 	int	num_e;
+	int	status;
 }	t_check;
 
 int	print_error(char *str);
