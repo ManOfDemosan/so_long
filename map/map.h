@@ -23,4 +23,5 @@ int	final_check(char *line, t_check *check);
 int	object_check(t_check *check);
 int	count_hight(char *file, t_check *check);
 int	check_them_all(char *file, t_check *check);
+char **ft_mapping(char *file, t_check *check);
 #endif

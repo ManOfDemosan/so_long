@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/16 14:56:09 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/17 21:34:58 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	check_them_all(char *file, t_check *check)
 	return (check->status);
 }
 
-char	**mapping(char *file, t_check *check)
+char	**ft_mapping(char *file, t_check *check)
 {
 	char	**map;
 	int		fd;
@@ -87,29 +87,29 @@ char	**mapping(char *file, t_check *check)
 	return (map);
 }
 
-int	main(void)
-{
-	char	**map;
-	int		i = 0;
+// int	main(void)
+// {
+// 	char	**map;
+// 	int		i = 0;
 
-	t_check	check;
-	check.status = 0;
-	check.width = 0;
-	check.height = 0;
-	check.num_p = 0;
-	check.num_c = 0;
-	check.num_e = 0;
+// 	t_check	check;
+// 	check.status = 0;
+// 	check.width = 0;
+// 	check.height = 0;
+// 	check.num_p = 0;
+// 	check.num_c = 0;
+// 	check.num_e = 0;
 
-	count_hight("mape.ber", &check);
-	check_them_all("mape.ber", &check);
-	// if (check.status == SUCCESS)
-	// 	printf("SUCCESS!\n");
-	// if (check.status == FAILURE)
-	// 	printf("FAILURE!\n");
-	map = mapping("mape.ber", &check);
-	while (i < 5)
-	{
-		printf("%s", map[i]);
-		i++;
-	}
-}
+// 	count_hight("mape.ber", &check);
+// 	check_them_all("mape.ber", &check);
+// 	// if (check.status == SUCCESS)
+// 	// 	printf("SUCCESS!\n");
+// 	// if (check.status == FAILURE)
+// 	// 	printf("FAILURE!\n");
+// 	map = mapping("mape.ber", &check);
+// 	while (i < 5)
+// 	{
+// 		printf("%s", map[i]);
+// 		i++;
+// 	}
+// }
