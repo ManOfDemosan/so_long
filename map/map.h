@@ -15,6 +15,31 @@ typedef struct s_check{
 	int	num_e;
 	int	status;
 }	t_check;
+ 
+typedef struct s_ptr{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_ptr;
+
+typedef struct s_info{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_info;
+
+typedef struct s_img{
+	t_info	*img_ptr0;
+	t_info	*img_ptr1;
+	t_info	*img_ptr_P;
+	t_info	*img_ptr_C;
+	t_info	*img_ptr_E;
+}	t_img;
+
+
 
 int	print_error(char *str);
 int	first_check(char *line, t_check *check);

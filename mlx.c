@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/18 17:31:49 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/21 22:00:13 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,56 +30,61 @@
 // 	return (0);
 // }
 
-int	main(void)
+void	check_init(t_check *check)
+{
+	check->status = 0;
+	check->width = 0;
+	check->height = 0;
+	check->num_p = 0;
+	check->num_c = 0;
+	check->num_e = 0;
+}
+
+void image_init(t_img *img, t_ptr *ptr)
+{
+	int		width;
+	int		height;
+	
+	img->img_ptr0 = malloc(sizeof(t_info) * 1);
+	img->img_ptr1 = malloc(sizeof(t_info) * 1);
+	img->img_ptr_P = malloc(sizeof(t_info) * 1);
+	img->img_ptr_C = malloc(sizeof(t_info) * 1);
+	img->img_ptr_E = malloc(sizeof(t_info) * 1);
+	
+	img->img_ptr0->img = mlx_xpm_file_to_image(ptr->mlx_ptr, "./0.64.xpm", &width, &height);
+	img->img_ptr1->img = mlx_xpm_file_to_image(ptr->mlx_ptr, "./1.64.xpm", &width, &height);
+	img->img_ptr_P->img = mlx_xpm_file_to_image(ptr->mlx_ptr, "./P64.xpm", &width, &height);
+	img->img_ptr_C->img = mlx_xpm_file_to_image(ptr->mlx_ptr, "./C64.xpm", &width, &height);
+	img->img_ptr_E->img = mlx_xpm_file_to_image(ptr->mlx_ptr, "./E64.xpm", &width, &height);
+
+}
+void _ptr(t_ptr *ptr)
+{
+	ptr->mlx_ptr = mlx_init();
+	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, 896, 320, "choon!");
+}
+
+int	main()
 {
 	char	**map;
-	
 	t_check	check;
-	check.status = 0;
-	check.width = 0;
-	check.height = 0;
-	check.num_p = 0;
-	check.num_c = 0;
-	check.num_e = 0;
-
-
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr1;
-	void	*img_ptr2;
-	void	*img_ptr_P;
-	void	*img_ptr_C;
-	void	*img_ptr_E;
-	int		x_size;
-	int		y_size;
+	t_ptr	ptr;
+	t_img	*img;
+	
+	_ptr(&ptr);
+	check_init(&check);
+	img = malloc(sizeof (t_img) * 1);
+	image_init(img, &ptr);
+	
+	count_hight("mape.ber", &check);
+	check_them_all("mape.ber", &check);
+	map = ft_mapping("mape.ber", &check);
 
 	int     x;
 	int 	y;
 	int		i;
 	int		j;
-	
-	count_hight("mape.ber", &check);
-	check_them_all("mape.ber", &check);
-	map = ft_mapping("mape.ber", &check);
-	
-	
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 640, 320, "choon!");
-	img_ptr1 = mlx_xpm_file_to_image(mlx_ptr, "./cat64.xpm", &x_size,  &y_size);
-	img_ptr2 = mlx_xpm_file_to_image(mlx_ptr, "./choon64.xpm", &x_size,  &y_size);
-	img_ptr_P = mlx_xpm_file_to_image(mlx_ptr, "./P64.xpm", &x_size,  &y_size);
-	img_ptr_C = mlx_xpm_file_to_image(mlx_ptr, "./C64.xpm", &x_size,  &y_size);
-	img_ptr_E = mlx_xpm_file_to_image(mlx_ptr, "./E64.xpm", &x_size,  &y_size);
-	i = 0;
-	if (check.status == SUCCESS)
-	printf("SUCCESS!\n");
-	if (check.status == FAILURE)
-	printf("FAILURE!\n");
-	while (map[i] != NULL)
-	{
-		printf("%s", map[i]);
-		i++;
-	}
+
 	y = 0;
 	i = 0;
 	while (map[i] != NULL)
@@ -89,15 +94,15 @@ int	main(void)
 		while (map[i][j] != '\n')
 		{
 			if (map[i][j] == '1')
-				mlx_put_image_to_window(mlx_ptr, win_ptr,img_ptr2, x, y);
+				mlx_put_image_to_window(ptr.mlx_ptr, ptr.win_ptr, img->img_ptr1->img, x, y);
 			else if (map[i][j] == '0')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr1, x, y);
+				mlx_put_image_to_window(ptr.mlx_ptr, ptr.win_ptr, img->img_ptr0->img, x, y);
 			else if (map[i][j] == 'C')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr_C, x, y);
+				mlx_put_image_to_window(ptr.mlx_ptr, ptr.win_ptr, img->img_ptr_C->img, x, y);
 			else if (map[i][j] == 'P')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr_P, x, y);
+				mlx_put_image_to_window(ptr.mlx_ptr, ptr.win_ptr, img->img_ptr_P->img, x, y);
 			else if (map[i][j] == 'E')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr_E, x, y);
+				mlx_put_image_to_window(ptr.mlx_ptr, ptr.win_ptr, img->img_ptr_E->img, x, y);
 			j++;
 			x += 64;	
 		}
@@ -105,6 +110,6 @@ int	main(void)
 		y += 64;
 	}
 	
-	mlx_loop(mlx_ptr);
+	mlx_loop(ptr.mlx_ptr);
 	return(0);
 }
