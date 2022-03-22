@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/22 21:15:16 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:17:49 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	image_init(t_img *img, t_ptr *ptr)
 void	ptr_init(t_ptr *ptr, t_check *check)
 {
 	ptr->mlx_ptr = mlx_init();
-	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, check->width * 64, check->height * 64, "choon!");
+	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, \
+		check->width * 64, check->height * 64, "choon!");
 }
 
 void	param_init(t_param *param)
@@ -101,7 +102,8 @@ int	key_press(int key, t_param *param)
 	return (0);
 }
 
-void	draw_map(t_ptr *ptr, t_img *img, t_param *param, char **map)
+void	draw_map(t_ptr *ptr, \
+		t_img *img, t_param *param, char **map)
 {
 	int		i;
 	int		j;
@@ -140,7 +142,7 @@ int	main(void)
 	t_ptr	ptr;
 	t_img	*img;
 	t_param	param;
-	
+
 	count_hight("mape.ber", &check);
 	check_them_all("mape.ber", &check);
 	map = ft_mapping("mape.ber", &check);
