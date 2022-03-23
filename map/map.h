@@ -32,11 +32,10 @@ typedef struct s_ptr{
 
 typedef struct s_info{
 	void	*img;
-	int		state_x;
-	int		state_y;
+	int		x;
+	int		y;
+
 	int		flag;// 조건이 맞는지 C다먹었는지 ,E이 활성비활성
-	int		width;
-	int		height;
 }	t_info;
 
 typedef struct s_img{
@@ -50,7 +49,7 @@ typedef struct s_img{
 typedef struct s_param{
 	int	x;
 	int	y;
-	int	moves;
+	int		moves;
 }	t_param;
 
 int		print_error(char *str);

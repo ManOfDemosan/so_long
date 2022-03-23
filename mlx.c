@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/23 18:38:01 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/23 19:47:28 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	image_init(t_img *img, t_ptr *ptr)
 	img->img_ptr_C = malloc(sizeof(t_info) * 1);
 	img->img_ptr_E = malloc(sizeof(t_info) * 1);
 	img->img_ptr_0->img = mlx_xpm_file_to_image(ptr->mlx_ptr, \
-	"./0.64.xpm", &width, &height);
+	"./xpm/0.64.xpm", &width, &height);
 	img->img_ptr_1->img = mlx_xpm_file_to_image(ptr->mlx_ptr, \
-	"./1.64.xpm", &width, &height);
+	"./xpm/1.64.xpm", &width, &height);
 	img->img_ptr_P->img = mlx_xpm_file_to_image(ptr->mlx_ptr, \
-	"./P64.xpm", &width, &height);
+	"./xpm/P64.xpm", &width, &height);
 	img->img_ptr_C->img = mlx_xpm_file_to_image(ptr->mlx_ptr, \
-	"./C64.xpm", &width, &height);
+	"./xpm/C64.xpm", &width, &height);
 	img->img_ptr_E->img = mlx_xpm_file_to_image(ptr->mlx_ptr, \
-	 "./E64.xpm", &width, &height);
+	 "./xpm/E64.xpm", &width, &height);
 }
 
 void	ptr_init(t_ptr *ptr, t_check *check)
@@ -149,7 +149,7 @@ int	main(void)
 	ft_mapping("mape.ber", &check);
 
 	ptr_init(&ptr, &check);
-	
+
 	img = malloc(sizeof (t_img) * 1);
 	image_init(img, &ptr);
 	param_init(&param);
