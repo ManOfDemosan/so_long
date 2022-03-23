@@ -15,6 +15,7 @@
 # define X_EVENT_KEY_PRESS 2
 // # define X_EVENT_KEY_RELEASE 3
 
+
 typedef struct s_check{
 	char	**map;
 	int		width;
@@ -34,7 +35,7 @@ typedef struct s_info{
 	void	*img;
 	int		x;
 	int		y;
-
+	int		moves;
 	int		flag;// 조건이 맞는지 C다먹었는지 ,E이 활성비활성
 }	t_info;
 
@@ -63,5 +64,7 @@ char	**ft_mapping(char *file, t_check *check);
 void	check_init(t_check *check);
 void	image_init(t_img *img, t_ptr *ptr);
 void	ptr_init(t_ptr *ptr, t_check *check);
+void	draw_map(t_ptr *ptr, t_img *img, t_param *param, t_check *check);
+
 
 #endif
