@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/17 21:34:58 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:36:38 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_them_all(char *file, t_check *check)
 	if (line == NULL)
 		return (0);
 	first_check(line, check);
-	while (line != NULL)
+	while (line > 0)
 	{
 		free(line);
 		line = get_next_line(fd);
@@ -84,12 +84,13 @@ char	**ft_mapping(char *file, t_check *check)
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	check->map = map;
 	return (map);
 }
 
 // int	main(void)
 // {
-// 	char	**map;
+
 // 	int		i = 0;
 
 // 	t_check	check;
@@ -106,10 +107,10 @@ char	**ft_mapping(char *file, t_check *check)
 // 	// 	printf("SUCCESS!\n");
 // 	// if (check.status == FAILURE)
 // 	// 	printf("FAILURE!\n");
-// 	map = mapping("mape.ber", &check);
+// 	ft_mapping("mape.ber", &check);
 // 	while (i < 5)
 // 	{
-// 		printf("%s", map[i]);
+// 		printf("%s", check.map[i]);
 // 		i++;
 // 	}
 // }

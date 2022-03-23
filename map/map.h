@@ -16,12 +16,13 @@
 // # define X_EVENT_KEY_RELEASE 3
 
 typedef struct s_check{
-	int	width;
-	int	height;
-	int	num_c;
-	int	num_p;
-	int	num_e;
-	int	status;
+	char	**map;
+	int		width;
+	int		height;
+	int		num_c;
+	int		num_p;
+	int		num_e;
+	int		status;//error메세지 뽑아줌
 }	t_check;
 
 typedef struct s_ptr{
@@ -31,10 +32,9 @@ typedef struct s_ptr{
 
 typedef struct s_info{
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		state_x;
+	int		state_y;
+	int		flag;// 조건이 맞는지 C다먹었는지 ,E이 활성비활성
 	int		width;
 	int		height;
 }	t_info;

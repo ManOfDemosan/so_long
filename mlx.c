@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/22 21:17:49 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:38:01 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,21 @@ int	key_press(int key, t_param *param)
 	if (key != KEY_ESC)
 	{
 		if (key == KEY_W)
-			param->x++;
+			param->y++;
 		else if (key == KEY_S)
-			param->x--;
+			param->y--;
 		else if (key == KEY_D)
-			param->y++;
+			param->x++;
 		else if (key == KEY_A)
-			param->y++;
-		if (key == KEY_W || key == KEY_S || key == KEY_A ||key == KEY_D)
+			param->x--;
+		printf("x: %d y: %d\n", param->x, param->y);
+		if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
 		{
 			param->moves++;
 			printf("Count: %d\n", param->moves);
 		}
 	}
-	else if (key == KEY_ESC)
+	if (key == KEY_ESC)
 	{
 		printf("So Long, Farewell~ ");
 		exit(0);
@@ -103,28 +104,26 @@ int	key_press(int key, t_param *param)
 }
 
 void	draw_map(t_ptr *ptr, \
-		t_img *img, t_param *param, char **map)
+		t_img *img, t_param *param, t_check *check)
 {
 	int		i;
 	int		j;
-
-	param->y = 0;
 	i = 0;
-	while (map[i] != NULL)
+	while (check->map[i] != NULL)
 	{
 		param->x = 0;
 		j = 0;
-		while (map[i][j] != '\n')
+		while (check->map[i][j] != '\n')
 		{
-			if (map[i][j] == '1')
+			if (check->map[i][j] == '1')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, img->img_ptr_1->img, param->x, param->y);
-			else if (map[i][j] == '0')
+			else if (check->map[i][j] == '0')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, img->img_ptr_0->img, param->x, param->y);
-			else if (map[i][j] == 'C')
+			else if (check->map[i][j] == 'C')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, img->img_ptr_C->img, param->x, param->y);
-			else if (map[i][j] == 'P')
+			else if (check->map[i][j] == 'P')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, img->img_ptr_P->img, param->x, param->y);
-			else if (map[i][j] == 'E')
+			else if (check->map[i][j] == 'E')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, img->img_ptr_E->img, param->x, param->y);
 			j++;
 			param->x += 64;	
@@ -132,29 +131,32 @@ void	draw_map(t_ptr *ptr, \
 		i++;
 		param->y += 64;
 	}
+	param->y = 0;
+	param->x = 0;
 }
 
 int	main(void)
 {
-	char	**map;
-	int		key;
+
+
 	t_check	check;
 	t_ptr	ptr;
 	t_img	*img;
 	t_param	param;
-
+	check_init(&check);
 	count_hight("mape.ber", &check);
 	check_them_all("mape.ber", &check);
-	map = ft_mapping("mape.ber", &check);
+	ft_mapping("mape.ber", &check);
 
 	ptr_init(&ptr, &check);
-	check_init(&check);
+	
 	img = malloc(sizeof (t_img) * 1);
 	image_init(img, &ptr);
 	param_init(&param);
-	key_press(key, &param);
-	
-	draw_map(&ptr, img, &param, map);
+
+	// key_press(key, &param);
+	draw_map(&ptr, img, &param, &check);
+
 	mlx_hook(ptr.win_ptr, X_EVENT_KEY_PRESS, 0, &key_press, &param);
 	mlx_loop(ptr.mlx_ptr);
 	return(0);

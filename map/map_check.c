@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/16 14:56:07 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:33:56 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	mid_check(char *line, t_check *check)
 		if (i == 0 && line[i] != '1')
 			return (check->status = \
 			print_error("3 ERROR: Wrong map structure!\n"));
-		if (line[i] == 'C')
+		if (line[i] == 'E')
+			check->num_e++;
+		else if (line[i] == 'C')
 			check->num_c++;
 		else if (line[i] == 'P')
 			check->num_p++;
-		else if (line[i] == 'E')
-			check->num_e++;
 		else if (i != 0 && !(line[i] == '0' || \
 				 line[i] == '1' || line[i] == '\n'))
 			return (check->status = \
