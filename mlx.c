@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/23 21:24:31 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:37:45 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	main(void)
 	t_img	*img;
 	t_param	param;
 
-	
 	check_init(&check);
 	count_hight("mape.ber", &check);
 	check_them_all("mape.ber", &check);
