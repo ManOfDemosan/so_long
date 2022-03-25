@@ -16,21 +16,6 @@
 // # define X_EVENT_KEY_RELEASE 3
 
 
-typedef struct s_check{
-	char	**map;
-	int		width;
-	int		height;
-	int		num_c;
-	int		num_p;
-	int		num_e;
-	int		status;//error메세지 뽑아줌
-}	t_check;
-
-typedef struct s_ptr{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_ptr;
-
 typedef struct s_info{
 	void	*img;
 	int		x;
@@ -47,10 +32,25 @@ typedef struct s_img{
 	t_info	*img_ptr_E;
 }	t_img;
 
+typedef struct s_check{
+	char	**map;
+	int		width;//map 의 넓이
+	int		height;//map의 높이
+	int		num_c;
+	int		num_p;
+	int		num_e;
+	int		status;//error메세지 뽑아줌
+	t_img	*img;
+}	t_check;
+
+typedef struct s_ptr{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_ptr;
+
 typedef struct s_param{
 	int	x;
 	int	y;
-	int		moves;
 }	t_param;
 
 int		print_error(char *str);

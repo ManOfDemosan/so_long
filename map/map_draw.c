@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 20:30:14 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/23 20:40:03 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/25 21:11:39 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	draw_land_river(t_ptr *ptr, t_img *img, t_param *param, t_check *check)
 	{
 		param->x = 0;
 		j = 0;
-		while (check->map[i][j] != '\n')
+		while (check->map[i][j] != '\n' && check->map[i][j] != '\0')
 		{
 			if (check->map[i][j] == '1')
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
 				img->img_ptr_1->img, param->x, param->y);
-			else if (check->map[i][j] == '0')
+			else
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
 				img->img_ptr_0->img, param->x, param->y);
 			j++;
@@ -52,11 +52,15 @@ void	draw_player(t_ptr *ptr, t_img *img, t_param *param, t_check *check)
 	{
 		param->x = 0;
 		j = 0;
-		while (check->map[i][j] != '\n')
+		while (check->map[i][j] != '\n' && check->map[i][j] != '\0')
 		{
 			if (check->map[i][j] == 'P')
+			{
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
-					img->img_ptr_P->img, param->x, param->y);
+				img->img_ptr_P->img, param->x, param->y);
+				img->img_ptr_P->x = j;
+				img->img_ptr_P->y = i;
+			}
 			j++;
 			param->x += 64;
 		}
@@ -77,11 +81,15 @@ void	draw_collectable(t_ptr *ptr, t_img *img, t_param *param, t_check *check)
 	{
 		param->x = 0;
 		j = 0;
-		while (check->map[i][j] != '\n')
+		while (check->map[i][j] != '\n' && check->map[i][j] != '\0')
 		{
 			if (check->map[i][j] == 'C')
-				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
+				{
+					mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
 					img->img_ptr_C->img, param->x, param->y);
+					img->img_ptr_C->x = j;
+					img->img_ptr_C->y = i;
+				}
 			j++;
 			param->x += 64;
 		}
@@ -102,11 +110,15 @@ void	draw_exit(t_ptr *ptr, t_img *img, t_param *param, t_check *check)
 	{
 		param->x = 0;
 		j = 0;
-		while (check->map[i][j] != '\n')
+		while (check->map[i][j] != '\n' && check->map[i][j] != '\0')
 		{
 			if (check->map[i][j] == 'E')
+			{
 				mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
 				img->img_ptr_E->img, param->x, param->y);
+				img->img_ptr_E->x = j;
+				img->img_ptr_E->y = i;
+			}
 			j++;
 			param->x += 64;
 		}
