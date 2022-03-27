@@ -6,81 +6,20 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:11:22 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 19:12:47 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:17:46 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./get_next_line/get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
-#include "mlx.h"
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include "./map/map.h"
+#include "so_long.h"
 
-void	check_init(t_check *check)
-{
-	check->width = 0;
-	check->height = 0;
-	check->num_p = 0;
-	check->num_c = 0;
-	check->num_e = 0;
-}
-
-void	init_player(t_game *game, int x, int y)
-{
-	game->player.current_x = x;
-	game->player.current_y = y;
-	game->player.moves = 0;
-	game->player.did_collect = 0;
-}
-
-void	init_exit(t_game *game, int x, int y)
-{
-	game->exit.x = x;
-	game->exit.y = y;
-	game->exit.is_opened = 0;
-}
-
-void	init_collectibles(t_game *game, int x, int y)
-{
-	static int		i;
-	t_collectible	collectible;
-
-	collectible.x = x;
-	collectible.y = y;
-	collectible.is_collected = 0;
-	game->collectibles[i] = collectible;
-	i++;
-}
-
-void	init_features(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	game->collectibles = (t_collectible *)malloc(sizeof(t_collectible)
-			* game->number_of_collectibles);
-	if (game->collectibles == NULL)
-		print_error("Failed to malloc collectible array");
-	while (i < game->map_height)
-	{
-		j = 0;
-		while (j < game->map_width)
-		{
-			if (game->map[i][j] == 'P')
-				init_player(game, j, i);
-			else if (game->map[i][j] == 'C')
-				init_collectibles(game, j, i);
-			else if (game->map[i][j] == 'E')
-				init_exit(game, j, i);
-			j++;
-		}
-		i++;
-	}
-}
+// void	check_init(t_check *check)
+// {
+// 	check->width = 0;
+// 	check->height = 0;
+// 	check->num_p = 0;
+// 	check->num_c = 0;
+// 	check->num_e = 0;
+// }
 
 void	make_2d_map(t_check *check, t_game *game)
 {
@@ -120,91 +59,13 @@ void	ptr_init(t_game *game)
 		game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "choon!");
 }
 
-void	new_map(int x, int y, t_game *game)
+
+int	terminate_game(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-				game->tiles.space.image_pointer, x * TILE_SIZE, y * TILE_SIZE);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-		game->tiles.player.image_pointer, \
-		game->player.current_x * TILE_SIZE, game->player.current_y * TILE_SIZE);
-}
-
-void	move_check_wall(int key, t_game *game)
-{
-	int	save_x;
-	int	save_y;
-
-	save_x = game->player.current_x;
-	save_y = game->player.current_y;
-	if (key != KEY_ESC)
-	{
-		if (key == KEY_W && game->map[game->player.current_y - 1] \
-		[game->player.current_x] != '1')
-			game->player.current_y--;
-		else if (key == KEY_S && game->map[game->player.current_y + 1] \
-		[game->player.current_x] != '1')
-			game->player.current_y++;
-		else if (key == KEY_D && game->map[game->player.current_y] \
-		[game->player.current_x + 1] != '1')
-			game->player.current_x++;
-		else if (key == KEY_A && game->map[game->player.current_y] \
-		[game->player.current_x - 1] != '1')
-			game->player.current_x--;
-		if (game->player.current_x != save_x \
-		|| game->player.current_y != save_y)
-			new_map(save_x, save_y, game);
-		printf("Count: %d\n", ++game->player.moves);
-	}
-}
-
-void	check_collectibles(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < game->number_of_collectibles)
-	{
-		if (game->collectibles[i].x == game->player.current_x
-			&& game->collectibles[i].y == game->player.current_y
-			&& game->collectibles[i].is_collected == 0)
-		{
-			game->player.did_collect++;
-			game->collectibles[i].is_collected = 1;
-		}
-		i++;
-	}
-}
-
-void	check_exit(t_game *game)
-{
-	if (game->player.did_collect == game->number_of_collectibles)
-	{	
-		if (game->exit.x == game->player.current_x \
-			&& game->exit.y == game->player.current_y)
-		{
-			game->exit.is_opened = 1;
-			printf("!!YOU WIN!!");
-			exit(0);
-		}
-		return ;
-	}
-}
-
-int	key_press(int key, t_game *game)
-{
-	if (key == KEY_W || key == KEY_A \
-		|| key == KEY_S || key == KEY_D)
-	{
-		move_check_wall(key, game);
-		check_collectibles(game);
-		check_exit(game);
-	}
-	else if (key == KEY_ESC)
-	{
-		printf("So Long, Farewell~ ");
-		exit(0);
-	}
-	return (0);
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	printf("So Long, Farewell~\n");
+	exit(0);
+	return(0);
 }
 
 int	main(void)
@@ -222,6 +83,7 @@ int	main(void)
 	init_features(&game);
 	draw_map(&game, &check);
 	mlx_hook(game.win_ptr, X_EVENT_KEY_PRESS, 0, &key_press, &game);
+	mlx_hook(game.win_ptr, X_EVENT_KEY_EXIT, 0, &terminate_game, &game);
 	mlx_loop(game.mlx_ptr);
 	return(0);
 }

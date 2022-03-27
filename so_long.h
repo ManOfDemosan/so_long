@@ -1,9 +1,11 @@
-#ifndef MAP_H
-# define MAP_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include "mlx.h"
+# include <fcntl.h>
+# include "./get_next_line/get_next_line.h"
 # include <stdlib.h>
 
 # define SUCCESS 0
@@ -14,8 +16,8 @@
 # define KEY_S 1
 # define KEY_D 2
 # define KEY_ESC 53
-# define X_EVENT_KEY_PRESS 2
-
+# define X_EVENT_KEY_PRESS	2
+# define X_EVENT_KEY_EXIT	17
 # define TILE_SIZE 64
 
 typedef struct s_check{
@@ -87,6 +89,8 @@ int			object_check(t_check *check);
 int			count_hight(char *file, t_check *check);
 int			check_them_all(char *file, t_check *check);
 char		**ft_mapping(char *file, t_check *check);
+void		init_features(t_game *game);
+int			key_press(int key, t_game *game);
 void		check_init(t_check *check);
 void		image_init(t_game *game);
 void		ptr_init(t_game *game);

@@ -6,13 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 14:06:07 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:51:33 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
-#include <fcntl.h>
-#include "../get_next_line/get_next_line.h"
+#include "so_long.h"
 
 int	count_hight(char *file, t_check *check)
 {

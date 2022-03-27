@@ -6,13 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 20:30:14 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 16:56:53 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:50:57 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "mlx.h"
-#include "./map/map.h"
+#include "so_long.h"
 
 void	draw_land_river(t_game *game, t_check *check)
 {
