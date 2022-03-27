@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/25 18:44:12 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/27 14:06:07 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_them_all(char *file, t_check *check)
 	object_check(check);
 	free(line);
 	close(fd);
-	return (check->status);
+	return (SUCCESS);
 }
 
 char	**ft_mapping(char *file, t_check *check)
