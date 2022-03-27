@@ -86,14 +86,17 @@ int			first_check(char *line, t_check *check);
 int			mid_check(char *line, t_check *check);
 int			final_check(char *line, t_check *check);
 int			object_check(t_check *check);
-int			count_hight(char *file, t_check *check);
-int			check_them_all(char *file, t_check *check);
-char		**ft_mapping(char *file, t_check *check);
+//mapcheck
+
+void		check_and_save_map(char *file, t_check *check);
+void		print_map(t_game *game, t_check *check);
+//map save
 void		init_features(t_game *game);
-int			key_press(int key, t_game *game);
 void		check_init(t_check *check);
 void		image_init(t_game *game);
+//init game
 void		ptr_init(t_game *game);
+int			key_press(int key, t_game *game);
 void		draw_map(t_game *game, t_check *check);
-
+//print game
 #endif

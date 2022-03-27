@@ -6,7 +6,7 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 19:51:33 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:27:25 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ char	**ft_mapping(char *file, t_check *check)
 	}
 	check->map = map;
 	return (map);
+}
+
+void	check_and_save_map(char *file, t_check *check)
+{
+	count_hight(file, check);
+	check_them_all(file, check);
+	ft_mapping(file, check);
 }
 
 // int	main(void)
