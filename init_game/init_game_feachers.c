@@ -6,11 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 19:53:54 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 20:36:59 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:36:56 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_init(t_check *check)
 {

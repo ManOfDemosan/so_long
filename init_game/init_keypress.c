@@ -6,11 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:14:38 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/28 02:34:03 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:36:29 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	new_map(int x, int y, t_game *game)
 {

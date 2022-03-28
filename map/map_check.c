@@ -6,11 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:28:11 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/28 13:26:15 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:37:13 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	print_error(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: jaehwkim <jaehwkim@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:29:00 by jaehwkim          #+#    #+#             */
-/*   Updated: 2022/03/27 20:27:25 by jaehwkim         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:37:03 by jaehwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	count_hight(char *file, t_check *check)
 {
