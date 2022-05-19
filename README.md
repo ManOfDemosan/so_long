@@ -41,5 +41,8 @@ ESC를 누르면 윈도우가 닫히고 프로그램이 정상적으로 종료�
 
 <img width="680" alt="Screen Shot 2022-05-18 at 2 53 25 PM" src="https://user-images.githubusercontent.com/86817683/168966973-f0fbcc67-269d-4404-a561-7e442509cc5e.png">
 
+# 게임 이미지 레퍼런스
 
+![ㅁㅇㄹ](https://user-images.githubusercontent.com/86817683/169174532-333a8885-3be3-4c6b-9b3d-4c14c86e1826.jpeg)
 
+출처: https://youtu.be/29zXF72Zrrg
